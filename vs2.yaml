@@ -1,0 +1,23 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: demoweb 
+  namespace: test
+spec:
+  hosts:
+  - demoweb.arecord.us
+  gateways:
+  - test/demoweb-gateway
+  trafficPolicy:
+    loadBalancer:
+      simple: LEAST_CONN 
+  http:
+  - route:
+    - destination:
+        host: demoweb 
+        subset: v1
+      weight: 80
+    - destination:
+        host: demoweb
+        subset: v2
+      weight: 20
