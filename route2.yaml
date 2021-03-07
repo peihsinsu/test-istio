@@ -2,7 +2,6 @@ apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
   name: demoweb 
-  namespace: test
 spec:
   host: demoweb
   subsets:
